@@ -1,0 +1,224 @@
+@large-screen: ~"only screen and (max-width: 1199px)";
+@small-screen: ~"only screen and (max-width: 425px)";
+@main-green: #4CAF50;
+@mid-grey: #636363;
+@background-white: #fafafa;
+@light-grey: #ebebeb;
+@label-grey: #999; /* LOGIN FORM START */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica;
+  background: #eee;
+  -webkit-font-smoothing: antialiased;
+}
+
+#loginform {
+  hgroup {
+    text-align: center;
+    margin-top: 4em;
+  }
+
+  h1,
+  h3 {
+    font-weight: 300;
+  }
+
+  h1 {
+    color: @mid-grey;
+  }
+
+  h3 {
+    color: @main-green;
+  }
+
+  form {
+    //width: 40vw;
+    margin: 4em auto;
+    padding: 3em 2em 2em;
+    background: @background-white;
+    border: 1px solid @light-grey;
+    box-shadow: rgba(0,0,0,0.14902) 0 1px 1px 0px,rgba(0,0,0,0.09804) 0 1px 2px 0;
+
+    @media @large-screen {
+      width: 320px;
+    }
+
+    @media @small-screen {
+      width: 100vw;
+    }
+  }
+
+  .group {
+    position: relative;
+    margin-bottom: 45px;
+  }
+
+  input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    -webkit-appearance: none;
+    display: block;
+    background: @background-white;
+    color: @mid-grey;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid @mid-grey;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  label {
+    color: @label-grey;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: all 0.2s ease;
+  }
+
+  input.used ~ label,
+  input:focus ~ label {
+    top: -20px;
+    transform: scale(.75);
+    left: -2px;
+    color: @main-green;
+  }
+
+  .bar {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  .bar:after,
+  .bar:before {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: @main-green;
+    transition: all 0.2s ease;
+  }
+
+  .bar:before {
+    left: 50%;
+  }
+
+  .bar:after {
+    right: 50%;
+  }
+
+  input:focus ~ .bar:after,
+  input:focus ~ .bar:before {
+    width: 50%;
+  }
+
+  .highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  input:focus ~ .highlight {
+    animation: inputHighlighter 0.3s ease;
+  }
+  @keyframes inputHighlighter {
+    from {
+      background: @main-green;
+    }
+
+    to {
+      width: 0;
+      background: transparent;
+    }
+  }
+
+  .button {
+    position: relative;
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0.3em 0 1em;
+    width: 100%;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    letter-spacing: 1px;
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid #1B5E20;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .button:focus {
+    outline: 0;
+  }
+
+  .buttonGreen {
+    background: @main-green;
+    text-shadow: 1px 1px 0 #1B5E20;
+  }
+
+  .buttonBlue:hover {
+    background: #357bd8;
+  }
+
+  .ripples {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .ripplesCircle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .ripples.is-active .ripplesCircle {
+    animation: ripples 0.4s ease-in;
+  }
+  @keyframes ripples {
+    0% {
+      opacity: 0;
+    }
+
+    25% {
+      opacity: 1;
+    }
+
+    100% {
+      width: 200%;
+      padding-bottom: 200%;
+      opacity: 0;
+    }
+  }
+}
+/* LOGIN BUTTON END*/
