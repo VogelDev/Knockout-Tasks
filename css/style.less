@@ -4,15 +4,17 @@
 @mid-grey: #636363;
 @background-white: #fafafa;
 @light-grey: #ebebeb;
-@label-grey: #999; /* LOGIN FORM START */
+@label-grey: #999;
+@body-bg: #EEEEEE;
 
+/* LOGIN FORM START */
 * {
   box-sizing: border-box;
 }
 
 body {
   font-family: Helvetica;
-  background: #eee;
+  background: @body-bg;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -222,3 +224,15 @@ body {
   }
 }
 /* LOGIN BUTTON END*/
+
+/* TASK INPUT START */
+#addInput {
+    padding: 16px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: @body-bg;
+    &:focus{
+      outline-width: 0;
+    }
+}
+/* TASK INPUT START */

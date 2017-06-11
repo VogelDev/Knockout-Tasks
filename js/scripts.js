@@ -54,7 +54,23 @@ $(document).ready(function(){
           }
     });
   });
-
+  $("#addBtn").click(function(){
+    $("#addBtn").hide();
+    $("#addInput").show();
+    $("#addInput").focus();
+  });
+  $("#addInput").blur(function(){
+    $("#addBtn").show();
+    $("#addInput").hide();
+		$("#addInput").val("");
+  });
+  $('#addInput').keypress(function (e) {
+  if (e.which == 13) {
+    viewModel.addTask();
+    $("#addInput").blur();
+    return false;
+  }
+});
 });
 
 var TaskListModel = function() {
@@ -62,19 +78,12 @@ var TaskListModel = function() {
   self.tasks = ko.observableArray();
 
   self.addTask = function() {
-
     var task = {
-      TASK: $("#taskInput").val()
+      TASK: $("#addInput").val()
     }
-
     uploadTask(task.TASK);
-
 		self.tasks.push(task);
-
-		$("#taskInput").val("")
-
-    console.log("click");
-
+		$("#addInput").blur();
   }
 
 }
