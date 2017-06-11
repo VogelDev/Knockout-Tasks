@@ -82,9 +82,14 @@ var TaskListModel = function() {
       TASK: $("#addInput").val()
     }
     uploadTask(task.TASK);
-		// self.tasks.push(task);
+		self.tasks.push(task);
     getTasks();
 		$("#addInput").blur();
+  }
+
+  self.completeTask = function(t){
+    $.post("data/completeTask.php", {task: JSON.stringify(t)});
+    getTasks();
   }
 
 }
@@ -108,6 +113,7 @@ function uploadTask(t){
 }
 
 function getTasks(){
+  console.log("getTasks");
   $.getJSON("./data/getTasks.php", function(data) {
     viewModel.tasks(data);
   });
