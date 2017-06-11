@@ -6,7 +6,7 @@
       <!-- <input type="text" id="taskInput"></input> -->
       <!-- <button data-bind="click:addTask" type="button" id="addButton" name="addButton" class="btn btn-primary" aria-label="">Add</button> -->
       <ul data-bind="foreach: tasks">
-        <li data-bind="text: TASK"></li>
+        <li data-bind="text: TASK, css:{task: true, complete: COMPLETED == 1}"></li>
       </ul>
       <ul>
         <li>

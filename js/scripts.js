@@ -65,12 +65,12 @@ $(document).ready(function(){
 		$("#addInput").val("");
   });
   $('#addInput').keypress(function (e) {
-  if (e.which == 13) {
-    viewModel.addTask();
-    $("#addInput").blur();
-    return false;
-  }
-});
+    if (e.which == 13) {
+      viewModel.addTask();
+      $("#addInput").blur();
+      return false;
+    }
+  });
 });
 
 var TaskListModel = function() {
@@ -82,7 +82,8 @@ var TaskListModel = function() {
       TASK: $("#addInput").val()
     }
     uploadTask(task.TASK);
-		self.tasks.push(task);
+		// self.tasks.push(task);
+    getTasks();
 		$("#addInput").blur();
   }
 

@@ -193,4 +193,7 @@ body {
 #addInput:focus {
   outline-width: 0;
 }
+.task.complete {
+  text-decoration: line-through;
+}
 /* TASK INPUT START */
