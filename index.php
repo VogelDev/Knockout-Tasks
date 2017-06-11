@@ -21,6 +21,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
   include("./includes/signInForm.php");
+  include("./includes/mainPage.php");
 ?>
 
   <script src="js/scripts.js"></script>
