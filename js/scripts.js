@@ -33,3 +33,36 @@ $(window, document, undefined).ready(function() {
   });
 
 });
+
+$(document).ready(function(){
+  $("#loginBtn").click(function(){
+      var username = $("#loginUser").val();
+      var password = $("#loginPwd").val();
+      login(username, password);
+  });
+  $("#registerBtn").click(function(){
+    var username = $("#loginUser").val();
+    var password = $("#loginPwd").val();
+    $.post("data/register.php",
+        {name: username, pwd: password},
+        function(data, status){
+          var response = JSON.parse(data);
+          $("#err_msg").text(response.msg);
+          if(!response.error){
+            login(username, password);
+          }
+    });
+  });
+
+  function login(u, p){
+    $.post("data/loginProcess.php",
+        {name: u, pwd: p},
+        function(data, status){
+          var response = JSON.parse(data);
+          $("#err_msg").text(response.msg);
+          if(!response.error){
+            $("#logindiv").hide();
+          }
+    });
+  }
+})

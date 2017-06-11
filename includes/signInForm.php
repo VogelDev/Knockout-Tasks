@@ -1,19 +1,19 @@
-<div class="loginform-in">
-<div class="err" id="add_err"></div>
+<div class="loginform-in" id="logindiv">
 <fieldset id="loginform">
 	<form>
 	  <div class="group">
-	    <input type="text"><span class="highlight"></span><span class="bar"></span>
+	    <input type="text" id="loginUser"><span class="highlight"></span><span class="bar"></span>
 	    <label>Username</label>
 	  </div>
 	  <div class="group">
-	    <input type="password"><span class="highlight"></span><span class="bar"></span>
+	    <input type="password" id="loginPwd"><span class="highlight"></span><span class="bar"></span>
 	    <label>Password</label>
 	  </div>
-	  <button type="button" class="button buttonGreen">Login
+		<div class="err" id="err_msg"></div>
+	  <button type="button" class="button buttonGreen" id="loginBtn">Login
 	    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
 	  </button>
-	  <button type="button" class="button buttonGreen">Register
+	  <button type="button" class="button buttonGreen" id="registerBtn">Register
 	    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
 	  </button>
 	</form>
