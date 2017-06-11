@@ -1,7 +1,5 @@
 $(window, document, undefined).ready(function() {
 
-  $("#mainPage").hide();
-
   $('input').blur(function() {
     var $this = $(this);
     if ($this.val())
@@ -57,54 +55,52 @@ $(document).ready(function(){
     });
   });
 
-  function login(u, p){
-    $.post("data/loginProcess.php",
-        {name: u, pwd: p},
-        function(data, status){
-          var response = JSON.parse(data);
-          $("#err_msg").text(response.msg);
-          if(!response.error){
-            $("#logindiv").hide();
-            getTasks();
-            $("#mainPage").show();
-          }
-    });
-  }
-
-  function getTasks(){
-    $.getJSON("./data/getTasks.php", function(data) {
-      viewModel.tasks(data);
-    });
-  }
-
 });
 
 var TaskListModel = function() {
 	var self = this;
-  self.tasks = ko.observableArray([]);
+  self.tasks = ko.observableArray();
 
   self.addTask = function() {
 
     var task = {
-			ID:					generateUUID(),
-      FIRST_NAME: $("#firstNameInput").val(),
-      LAST_NAME: 	$("#lastNameInput").val(),
-      TITLE: 			$("#titleInput").val(),
-      PHONE: 			$("#phoneInput").val(),
-      EMAIL: 			$("#emailInput").val(),
-			theme:      "OrangeRed"
+      TASK: $("#taskInput").val()
     }
+
+    uploadTask(task.TASK);
 
 		self.tasks.push(task);
 
-		$("#firstNameInput").val(""),
-		$("#lastNameInput").val(""),
-		$("#titleInput").val(""),
-		$("#phoneInput").val(""),
-		$("#emailInput").val("")
+		$("#taskInput").val("")
+
+    console.log("click");
 
   }
 
+}
+
+function login(u, p){
+  $.post("data/loginProcess.php",
+      {name: u, pwd: p},
+      function(data, status){
+        var response = JSON.parse(data);
+        $("#err_msg").text(response.msg);
+        if(!response.error){
+          $("#logindiv").hide();
+          getTasks();
+          $("#mainPage").show();
+        }
+  });
+}
+
+function uploadTask(t){
+  $.post("data/addTasks.php", {task: t});
+}
+
+function getTasks(){
+  $.getJSON("./data/getTasks.php", function(data) {
+    viewModel.tasks(data);
+  });
 }
 
 var viewModel = new TaskListModel();
