@@ -238,7 +238,40 @@ body {
 
 .task {
   &.complete {
-    text-decoration: line-through; 
+    text-decoration: line-through;
   }
 }
-/* TASK INPUT START */
+/* TASK INPUT END */
+/* TASK STYLE START */
+
+.tasks {
+  & li {
+    clear:both;
+    list-style: none;
+    margin: 5px;
+  }
+  & .card{
+    width:300px;
+    min-height:50px;
+    background-color: @background-white;
+    & .taskMsg{
+      margin: auto;
+      width: 50%;
+      padding: 10px;
+      float: left;
+    }
+    & .taskComplete {
+      width:50px;
+      height:50px;
+      border:1px solid black;
+      float:right;
+      background-color: @light-grey;
+    }
+  }
+  & .complete {
+    & .taskComplete {
+      background-color: @main-green;
+    }
+  }
+}
+/* TASK STYLE END */

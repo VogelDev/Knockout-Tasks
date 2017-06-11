@@ -88,8 +88,9 @@ var TaskListModel = function() {
   }
 
   self.completeTask = function(t){
-    $.post("data/completeTask.php", {task: JSON.stringify(t)});
-    getTasks();
+    $.post("data/completeTask.php", {task: JSON.stringify(t)}, function(data, status){
+      getTasks();
+    });
   }
 
 }
