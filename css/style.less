@@ -1,6 +1,7 @@
 @large-screen: ~"only screen and (max-width: 1199px)";
 @small-screen: ~"only screen and (max-width: 425px)";
 @main-green: #4CAF50;
+@main-red: #F44336;
 @mid-grey: #636363;
 @background-white: #fafafa;
 @light-grey: #ebebeb;
@@ -227,10 +228,10 @@ body {
 
 /* TASK INPUT START */
 #addInput {
-    padding: 16px 20px;
+    //padding: 16px 20px;
     border: none;
     border-radius: 4px;
-    background-color: @body-bg;
+    background-color: @background-white;
     &:focus{
       outline-width: 0;
     }
@@ -266,6 +267,13 @@ body {
       border:1px solid black;
       float:right;
       background-color: @light-grey;
+    }
+    & .taskCompleteAdd {
+      width:50px;
+      height:50px;
+      border:1px solid black;
+      float:right;
+      background-color: @main-red;
     }
   }
   & .complete {

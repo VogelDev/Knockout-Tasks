@@ -82,8 +82,7 @@ var TaskListModel = function() {
       TASK: $("#addInput").val()
     }
     uploadTask(task.TASK);
-		self.tasks.push(task);
-    getTasks();
+		//self.tasks.push(task);
 		$("#addInput").blur();
   }
 
@@ -110,11 +109,12 @@ function login(u, p){
 }
 
 function uploadTask(t){
-  $.post("data/addTasks.php", {task: t});
+  $.post("data/addTasks.php", {task: t}, function(data, status){
+    getTasks();
+  });
 }
 
 function getTasks(){
-  console.log("getTasks");
   $.getJSON("./data/getTasks.php", function(data) {
     viewModel.tasks(data);
   });

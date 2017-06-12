@@ -1,8 +1,17 @@
-<div class="container" id="mainPage">
-  <div class="row">
-    <div class="col-sm-6">
-    </div>
-    <div class="col-sm-6">
+<!-- <div class="container" id="mainPage"> -->
+  <div class="row" id="mainPage">
+    <div class="col-sm-4">
+      <ul class="tasks">
+        <li class="task">
+          <div class="card">
+            <div class="taskMsg">
+              <div id="addBtn">Category 1</div>
+              <input id="addInput" style="display: none;" data-bind="enterkey: addTask"></input>
+            </div>
+            <div class="taskCompleteAdd"></div>
+          </div>
+        </li>
+      </ul>
       <!-- <input type="text" id="taskInput"></input> -->
       <!-- <button data-bind="click:addTask" type="button" id="addButton" name="addButton" class="btn btn-primary" aria-label="">Add</button> -->
       <ul data-bind="foreach: tasks" class="tasks">
@@ -15,12 +24,31 @@
           </div>
         </li>
       </ul>
-      <ul style="clear:both">
-        <li>
-          <div id="addBtn">Add...</div>
-          <input id="addInput" style="display: none;" data-bind="enterkey: addTask"></input>
+      <ul class="tasks">
+        <li class="task">
+          <div class="card">
+            <div class="taskMsg">
+              <div id="addBtn">Add task...</div>
+              <input id="addInput" style="display: none;" data-bind="enterkey: addTask"></input>
+            </div>
+            <div class="taskCompleteAdd"></div>
+          </div>
         </li>
       </ul>
     </div>
+    <div class="col-sm-4">
+      <ul class="tasks">
+        <li class="task">
+          <div class="card">
+            <div class="taskMsg">
+              <div id="addBtn">Add task...</div>
+              <input id="addInput" style="display: none;" data-bind="enterkey: addTask"></input>
+            </div>
+            <div class="taskCompleteAdd"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- <div class="col-sm-4"></div> -->
   </div>
-</div>
+<!-- </div> -->
