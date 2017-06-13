@@ -12,7 +12,7 @@ $query = "";
 
 if(isset($_POST['category'])){
   $category = $_POST['category'];
-  $query = "CALL changeCategory(:id, :name, :category)";
+  $query = "CALL changeCategory(:category, :name, :id)";
 }else{
   $query = "CALL addCategory(:id, :name, :category)";
 }

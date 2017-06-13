@@ -1,4 +1,4 @@
-<div data-bind="foreach: categories" class="row" id="mainPage">
+<div data-bind="foreach: categories" class="row" id="categories">
   <div class="col-sm-4 categoryList">
     <ul class="tasks">
       <li class="task">
@@ -33,3 +33,5 @@
     </ul>
   </div>
 </div>
+
+<div id="logoutBtn">LOGOUT</div>

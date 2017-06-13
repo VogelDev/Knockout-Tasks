@@ -1,5 +1,6 @@
 <?php
 session_start();
+var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,22 +20,16 @@ session_start();
 <body>
 
   <?php
-
-  // ini_set('display_errors', 1);
-  // ini_set('display_startup_errors', 1);
-  // error_reporting(E_ALL);
-
-    include("./includes/signInForm.php");
-    // include("./includes/mainPage.php");
     include("./includes/mainPageTest.php");
+    include("./includes/signInForm.php");
   ?>
-
   <script src="js/scripts.js"></script>
+
   <?php
     if($_SESSION['oId']){
-      echo "<script>$('#logindiv').hide();getTasks();$('#mainPage').show();</script>";
+      echo "<script>$('#logindiv').hide();getTasks();$('#categories').show();</script>";
     }else{
-      echo "<script>$('#mainPage').hide();</script>";
+      echo "<script>$('#categories').hide();</script>";
     }
   ?>
 

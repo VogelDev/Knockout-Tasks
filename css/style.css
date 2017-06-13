@@ -242,3 +242,10 @@ body {
   background-color: #4caf50;
 }
 /* TASK STYLE END */
+/* LOGOUT BUTTON START */
+#logoutBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+/* LOGOUT BUTTON END */

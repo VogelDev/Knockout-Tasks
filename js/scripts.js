@@ -57,29 +57,29 @@ $(document).ready(function(){
     });
     return false;
   });
-  
-  $(".addCard").click(function(){
-    //$("#addBtn").hide();
-    $(this).find(".taskMsg .addBtn").hide();
-    $(this).find(".taskMsg .addInput").show();
-    $(this).find(".taskMsg .addInput").focus();
-    $card = $(this);
-    return false;
-  });
+
+  // $(".addCard").click(function(){
+  //   //$("#addBtn").hide();
+  //   $(this).find(".taskMsg .addBtn").hide();
+  //   $(this).find(".taskMsg .addInput").show();
+  //   $(this).find(".taskMsg .addInput").focus();
+  //   $card = $(this);
+  //   return false;
+  // });
   $(".addInput").blur(function(){
     $card.find(".taskMsg .addBtn").show();
     $card.find(".taskMsg .addInput").hide();
     $card.find(".taskMsg .addInput").val("");
   });
 
-  $(".categoryCard").click(function(){
-    //$("#addBtn").hide();
-    $(this).find(".taskMsg .addCategoryBtn").hide();
-    $(this).find(".taskMsg .addCategoryInput").show();
-    $(this).find(".taskMsg .addCategoryInput").focus();
-    $card = $(this);
-    return false;
-  });
+  // $(".categoryCard").click(function(){
+  //   //$("#addBtn").hide();
+  //   $(this).find(".taskMsg .addCategoryBtn").hide();
+  //   $(this).find(".taskMsg .addCategoryInput").show();
+  //   $(this).find(".taskMsg .addCategoryInput").focus();
+  //   $card = $(this);
+  //   return false;
+  // });
   $(".addCategoryInput").blur(function(){
     $card.find(".taskMsg .addCategoryBtn").show();
     $card.find(".taskMsg .addCategoryInput").hide();
@@ -126,6 +126,14 @@ var TaskListModel = function() {
       return true;
     }
   }
+
+  self.clickAddTask = function(){
+    $(this).find(".taskMsg .addBtn").hide();
+    $(this).find(".taskMsg .addInput").show();
+    $(this).find(".taskMsg .addInput").focus();
+    $card = $(this);
+    return false;
+  }
 }
 
 function login(u, p){
@@ -137,7 +145,7 @@ function login(u, p){
         if(!response.error){
           $("#logindiv").hide();
           getTasks();
-          $("#mainPage").show();
+          $("#categories").show();
         }
   });
 }
@@ -161,6 +169,30 @@ function getTasks(){
     viewModel.categories.push(obj);
   });
 }
+
+$("#categories").on("click", ".categoryCard", function(){
+  $(this).find(".taskMsg .addCategoryBtn").hide();
+  $(this).find(".taskMsg .addCategoryInput").show();
+  $(this).find(".taskMsg .addCategoryInput").focus();
+  $card = $(this);
+  return false;
+});
+
+$("#categories").on("click", ".addCard", function(){
+  //$("#addBtn").hide();
+  $(this).find(".taskMsg .addBtn").hide();
+  $(this).find(".taskMsg .addInput").show();
+  $(this).find(".taskMsg .addInput").focus();
+  $card = $(this);
+  return false;
+});
+
+$("#logoutBtn").click(function(){
+  console.log("click");
+  $.get("data/logout.php", function(){
+    location.reload();
+  });
+});
 
 var viewModel = new TaskListModel();
 
