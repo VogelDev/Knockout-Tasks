@@ -184,12 +184,14 @@ body {
 }
 /* LOGIN BUTTON END*/
 /* TASK INPUT START */
-.addInput {
+.addInput,
+.addCategoryInput {
   border: none;
   border-radius: 4px;
   background-color: #fafafa;
 }
-.addInput:focus {
+.addInput:focus,
+.addCategoryInput:focus {
   outline-width: 0;
 }
 .categoryList {

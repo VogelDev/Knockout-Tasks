@@ -41,6 +41,7 @@ $(document).ready(function(){
       var username = $("#loginUser").val();
       var password = $("#loginPwd").val();
       login(username, password);
+      return false;
   });
   $("#registerBtn").click(function(){
     var username = $("#loginUser").val();
@@ -54,18 +55,35 @@ $(document).ready(function(){
             login(username, password);
           }
     });
+    return false;
   });
-  $(".card").click(function(){
+  
+  $(".addCard").click(function(){
     //$("#addBtn").hide();
     $(this).find(".taskMsg .addBtn").hide();
     $(this).find(".taskMsg .addInput").show();
     $(this).find(".taskMsg .addInput").focus();
     $card = $(this);
+    return false;
   });
   $(".addInput").blur(function(){
     $card.find(".taskMsg .addBtn").show();
     $card.find(".taskMsg .addInput").hide();
     $card.find(".taskMsg .addInput").val("");
+  });
+
+  $(".categoryCard").click(function(){
+    //$("#addBtn").hide();
+    $(this).find(".taskMsg .addCategoryBtn").hide();
+    $(this).find(".taskMsg .addCategoryInput").show();
+    $(this).find(".taskMsg .addCategoryInput").focus();
+    $card = $(this);
+    return false;
+  });
+  $(".addCategoryInput").blur(function(){
+    $card.find(".taskMsg .addCategoryBtn").show();
+    $card.find(".taskMsg .addCategoryInput").hide();
+    $card.find(".taskMsg .addCategoryInput").val("");
   });
   // $('.addInput').keypress(function (e) {
   //   if (e.which == 13) {
@@ -81,23 +99,28 @@ var TaskListModel = function() {
   self.tasks = ko.observableArray();
   self.categories = ko.observableArray();
 
-  self.addTask = function(t, c) {
-    uploadTask(t, c);
-    $card.find(".taskMsg .addInput").blur();
-  }
-
   self.completeTask = function(t){
     $.post("data/completeTask.php", {task: JSON.stringify(t)}, function(data, status){
       getTasks();
     });
   }
 
-  self.onEnter = function(d,e){
+  self.addTask = function(d,e){
     if(e.which == 13){
-      //console.log(d.category);
       var t = $card.find(".taskMsg .addInput").val();
-      self.addTask(t, d.category);
+      uploadTask(t, d.category);
       $card.find(".taskMsg .addInput").blur();
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  self.addCategory = function(d,e){
+    if(e.which == 13){
+      var n = $card.find(".taskMsg .addCategoryInput").val();
+      uploadCategory(n, d.category);
+      $card.find(".taskMsg .addCategoryInput").blur();
       return false;
     }else{
       return true;
@@ -121,6 +144,12 @@ function login(u, p){
 
 function uploadTask(t, c){
   $.post("data/addTasks.php", {task: t, category: c}, function(data, status){
+    getTasks();
+  });
+}
+
+function uploadCategory(n, c){
+  $.post("data/updateCategory.php", {name: n, category: c}, function(data, status){
     getTasks();
   });
 }
