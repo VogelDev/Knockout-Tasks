@@ -7,10 +7,31 @@ require_once 'dbconfig.php';
 session_start();
 $id = $_SESSION['oId'];
 
-$qry = "CALL getTasks('$id')";
-$res = $db_con->query($qry);
-$result = $res->fetchAll();
+$sth = $db_con->prepare("CALL getCategories(:id)");
+$sth->bindParam(':id', $id, PDO::PARAM_INT);
+$sth->execute();
 
-echo json_encode($result);
+class Category{
+  public $name;
+  public $tasks;
+  public $category;
+}
 
+$arr = array();
+$results = $sth->fetchAll(PDO::FETCH_GROUP|PDO::FETCH_ASSOC);
+foreach ($results as $key => $value) {
+  $obj = new Category();
+  if($value != null){
+    $obj->tasks = $value;
+  }else{
+    $obj->tasks = array();
+  }
+  $obj->name = $key;
+  $obj->category = $value[0]["CATEGORY"];
+  array_push($arr, $obj);
+}
+//var_dump(array_values($arr));
+echo json_encode(array_values($arr));
+
+//echo json_encode($sth->fetchAll(PDO::FETCH_GROUP|PDO::FETCH_ASSOC));
 ?>

@@ -41,14 +41,13 @@
         <li class="task">
           <div class="card">
             <div class="taskMsg">
-              <div id="addBtn">Add task...</div>
-              <input id="addInput" style="display: none;" data-bind="enterkey: addTask"></input>
+              <div class="addBtn">Add task...</div>
+              <input class="addInput" style="display: none;" data-bind="enterkey: addTask"></input>
             </div>
             <div class="taskCompleteAdd"></div>
           </div>
         </li>
       </ul>
     </div>
-    <!-- <div class="col-sm-4"></div> -->
   </div>
 <!-- </div> -->

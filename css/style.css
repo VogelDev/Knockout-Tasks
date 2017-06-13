@@ -184,19 +184,28 @@ body {
 }
 /* LOGIN BUTTON END*/
 /* TASK INPUT START */
-#addInput {
+.addInput {
   border: none;
   border-radius: 4px;
   background-color: #fafafa;
 }
-#addInput:focus {
+.addInput:focus {
   outline-width: 0;
+}
+.categoryList {
+  border: 1px solid black;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 5px;
 }
 .task.complete {
   text-decoration: line-through;
 }
 /* TASK INPUT END */
 /* TASK STYLE START */
+.tasks {
+  padding-left: 0px;
+}
 .tasks li {
   clear: both;
   list-style: none;

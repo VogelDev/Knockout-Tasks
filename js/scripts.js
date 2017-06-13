@@ -1,3 +1,4 @@
+var $card;
 $(window, document, undefined).ready(function() {
 
   $('input').blur(function() {
@@ -54,36 +55,35 @@ $(document).ready(function(){
           }
     });
   });
-  $("#addBtn").click(function(){
-    $("#addBtn").hide();
-    $("#addInput").show();
-    $("#addInput").focus();
+  $(".card").click(function(){
+    //$("#addBtn").hide();
+    $(this).find(".taskMsg .addBtn").hide();
+    $(this).find(".taskMsg .addInput").show();
+    $(this).find(".taskMsg .addInput").focus();
+    $card = $(this);
   });
-  $("#addInput").blur(function(){
-    $("#addBtn").show();
-    $("#addInput").hide();
-		$("#addInput").val("");
+  $(".addInput").blur(function(){
+    $card.find(".taskMsg .addBtn").show();
+    $card.find(".taskMsg .addInput").hide();
+    $card.find(".taskMsg .addInput").val("");
   });
-  $('#addInput').keypress(function (e) {
-    if (e.which == 13) {
-      viewModel.addTask();
-      $("#addInput").blur();
-      return false;
-    }
-  });
+  // $('.addInput').keypress(function (e) {
+  //   if (e.which == 13) {
+  //     //viewModel.addTask()
+  //     console.log(this);
+  //     $(".addInput").blur();
+  //     return false;
+  //   }
+  // });
 });
-
 var TaskListModel = function() {
 	var self = this;
   self.tasks = ko.observableArray();
+  self.categories = ko.observableArray();
 
-  self.addTask = function() {
-    var task = {
-      TASK: $("#addInput").val()
-    }
-    uploadTask(task.TASK);
-		//self.tasks.push(task);
-		$("#addInput").blur();
+  self.addTask = function(t, c) {
+    uploadTask(t, c);
+    $card.find(".taskMsg .addInput").blur();
   }
 
   self.completeTask = function(t){
@@ -92,6 +92,17 @@ var TaskListModel = function() {
     });
   }
 
+  self.onEnter = function(d,e){
+    if(e.which == 13){
+      //console.log(d.category);
+      var t = $card.find(".taskMsg .addInput").val();
+      self.addTask(t, d.category);
+      $card.find(".taskMsg .addInput").blur();
+      return false;
+    }else{
+      return true;
+    }
+  }
 }
 
 function login(u, p){
@@ -108,15 +119,17 @@ function login(u, p){
   });
 }
 
-function uploadTask(t){
-  $.post("data/addTasks.php", {task: t}, function(data, status){
+function uploadTask(t, c){
+  $.post("data/addTasks.php", {task: t, category: c}, function(data, status){
     getTasks();
   });
 }
 
 function getTasks(){
   $.getJSON("./data/getTasks.php", function(data) {
-    viewModel.tasks(data);
+    viewModel.categories(data);
+    var obj = {name:"New Category...",tasks:[]};
+    viewModel.categories.push(obj);
   });
 }
 
