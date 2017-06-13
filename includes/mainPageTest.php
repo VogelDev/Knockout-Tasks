@@ -12,7 +12,7 @@
       </li>
     </ul>
     <ul data-bind="foreach: tasks" class="tasks">
-      <li data-bind="css:{task: true, complete: COMPLETED == 1}, click: $parent.completeTask, visible: TASK != null">
+      <li data-bind="css:{task: true, complete: COMPLETED == 1}, click: $root.completeTask, visible: TASK != null">
         <div class="card">
           <div class="taskMsg" data-bind="text: TASK">
           </div>
