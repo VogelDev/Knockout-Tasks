@@ -1,6 +1,5 @@
 <?php
 session_start();
-var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,9 +26,9 @@ var_dump($_SESSION);
 
   <?php
     if($_SESSION['oId']){
-      echo "<script>$('#logindiv').hide();getTasks();$('#categories').show();</script>";
+      echo "<script>$('#logindiv').hide();getTasks();$('#categories').show();$('#logoutBtn').show();</script>";
     }else{
-      echo "<script>$('#categories').hide();</script>";
+      echo "<script>$('#categories').hide();$('#logoutBtn').hide();</script>";
     }
   ?>
 

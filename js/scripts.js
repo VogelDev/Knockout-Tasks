@@ -146,6 +146,7 @@ function login(u, p){
           $("#logindiv").hide();
           getTasks();
           $("#categories").show();
+          $("#logoutBtn").show();
         }
   });
 }

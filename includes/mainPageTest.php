@@ -33,5 +33,4 @@
     </ul>
   </div>
 </div>
-
 <div id="logoutBtn">LOGOUT</div>
