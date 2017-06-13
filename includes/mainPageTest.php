@@ -1,4 +1,4 @@
-<div data-bind="foreach: categories" class="row" id="categories">
+<div data-bind="foreach: categories" class="" id="categories">
   <div class="col-sm-4 categoryList">
     <ul class="tasks">
       <li class="task">
